@@ -1,0 +1,38 @@
+<div class="modo-toggle">
+  <button (click)="toggleModo()">
+    Cambiar a {{ modoOscuro ? 'Modo Claro' : 'Modo Oscuro' }}
+  </button>
+</div>
+
+<div class="menu-container">
+  <div class="menu">
+    <div class="logo">
+      <img src="assets/Imagenes/logo.png" alt="Logo"/>
+      <h1>Los Jardines</h1>
+    </div>
+
+    <div *ngFor="let categoria of comidas" class="submenu">
+      <button class="categoria-btn" (click)="toggleCategoria(categoria.categoria)">
+        {{ categoria.categoria }}
+      </button>
+
+      <div *ngIf="categoria.categoria === categoriaSeleccionada" class="alimentos">
+        <div *ngFor="let comida of categoria.alimentos" class="comida-item">
+          <div class="comida-row">
+            <div class="comida-col imagen">
+              <img [src]="comida.imagen || 'assets/img-placeholder.jpg'" alt="Imagen de {{ comida.nombre }}" />
+            </div>
+            <div class="comida-col nombre">
+              {{ comida.nombre }}
+            </div>
+            <div class="comida-col precio">
+              {{ comida.precioMin && comida.precioMax
+                ? ('$' + comida.precioMin + ' - $' + comida.precioMax + ' MXN')
+                : (comida.precio | currency:'MXN') }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

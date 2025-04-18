@@ -1,56 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-
-  /* Aplicar variables globales */
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* MODO CLARO */
-body.light-mode {
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --card-bg: #f3f3f3;
-  --border-color: #ffffff;
-  --button-bg: #e0e0e0;
-  --button-text: #000000;
-  --button-hover: #c0c0c0;
-}
-
-/* MODO OSCURO */
-body.dark-mode {
-  --bg-color: #1e1e1e;
-  --text-color: #f0f0f0;
-  --card-bg: #252525;
-  --border-color: #1e1e1e;
-  --button-bg: #2e2e2e;
-  --button-text: #ffffff;
-  --button-hover: #444444;
-}
-
-/* Contenedor principal */
+/* Contenedor general para centrar */
 .menu-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Estilos del menú */
 .menu {
   width: 100%;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Logo */
@@ -69,7 +28,6 @@ body.dark-mode {
   margin-top: 8px;
   font-weight: bold;
   color: var(--text-color);
-  transition: color 0.3s ease;
 }
 
 /* Botón de categoría */
@@ -85,7 +43,7 @@ body.dark-mode {
   cursor: pointer;
   margin-bottom: 8px;
   border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .categoria-btn:hover {
@@ -97,7 +55,6 @@ body.dark-mode {
   padding: 10px 16px 10px 20px;
   background-color: var(--card-bg);
   animation: expand 0.3s ease;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Animación al mostrar */
@@ -118,7 +75,6 @@ body.dark-mode {
   padding: 0;
   margin: 0;
   background-color: transparent;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .comida-row {
@@ -126,12 +82,10 @@ body.dark-mode {
   align-items: center;
   border-bottom: 1px solid var(--border-color);
   padding: 12px 0;
-  transition: border-color 0.3s ease;
 }
 
 .comida-col {
   padding: 0 12px;
-  transition: color 0.3s ease;
 }
 
 .comida-col.imagen img {
@@ -139,7 +93,7 @@ body.dark-mode {
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
 }
 
 .comida-col.nombre {
@@ -152,7 +106,6 @@ body.dark-mode {
   flex: 1;
   padding: 0 10px;
   color: var(--text-color);
-  transition: color 0.3s ease;
 }
 
 .comida-col.precio {
@@ -160,8 +113,7 @@ body.dark-mode {
   text-align: right;
   font-size: 16px;
   font-weight: bold;
-  color: var(--text-color);
-  transition: color 0.3s ease;
+  color: #29a03d;
 }
 
 /* Responsive */
@@ -185,24 +137,4 @@ body.dark-mode {
     max-width: 300px;
     height: auto;
   }
-}
-
-/* Botón de modo oscuro/claro */
-.modo-toggle {
-  text-align: right;
-  margin: 10px 20px;
-}
-
-.modo-toggle button {
-  padding: 10px 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.modo-toggle button:hover {
-  background-color: var(--button-hover);
 }

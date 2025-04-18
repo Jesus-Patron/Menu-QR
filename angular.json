@@ -23,24 +23,23 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/menu-qr-front-alt",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
+          "outputPath": "dist/menu-qr-front-alt",
+          "index": "src/index.html",
+          "browser": "src/main.ts",
+          "polyfills": [
+            "zone.js"
+          ],
+          "tsConfig": "tsconfig.app.json",
+          "assets": [
+            "src/assets",
+            "src/favicon.ico"
+          ],
+          "styles": [
+            "src/custom-theme.scss",
+            "src/styles.css"
+          ],
+          "scripts": []
+        },
           "configurations": {
             "production": {
               "budgets": [
@@ -60,7 +59,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -89,10 +94,8 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -102,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
