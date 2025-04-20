@@ -1,4 +1,4 @@
-/* Contenedor general para centrar */
+/* Contenedor general */
 .menu-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -8,8 +8,10 @@
 /* Estilos del menú */
 .menu {
   width: 100%;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #222222;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 /* Logo */
@@ -27,15 +29,15 @@
   font-size: 28px;
   margin-top: 8px;
   font-weight: bold;
-  color: var(--text-color);
+  color: #222222;
 }
 
 /* Botón de categoría */
 .categoria-btn {
   width: 100%;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--border-color);
+  background-color: #e0e0e0;
+  color: #000000;
+  border: 1px solid #cccccc;
   padding: 12px;
   text-align: left;
   font-size: 18px;
@@ -47,13 +49,14 @@
 }
 
 .categoria-btn:hover {
-  background-color: var(--button-hover);
+  background-color: #c0c0c0;
 }
 
 /* Contenedor de alimentos */
 .alimentos {
   padding: 10px 16px 10px 20px;
-  background-color: var(--card-bg);
+  background-color: #f3f3f3;
+  border-radius: 8px;
   animation: expand 0.3s ease;
 }
 
@@ -80,7 +83,7 @@
 .comida-row {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #cccccc;
   padding: 12px 0;
 }
 
@@ -93,7 +96,7 @@
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #cccccc;
 }
 
 .comida-col.nombre {
@@ -105,7 +108,7 @@
   font-weight: bold;
   flex: 1;
   padding: 0 10px;
-  color: var(--text-color);
+  color: #222222;
 }
 
 .comida-col.precio {
@@ -114,57 +117,6 @@
   font-size: 16px;
   font-weight: bold;
   color: #29a03d;
-}
-
-/* Botón de modo oscuro/claro */
-.modo-toggle {
-  text-align: right;
-  margin: 10px 20px;
-}
-
-.modo-toggle button {
-  padding: 10px 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.modo-toggle button:hover {
-  background-color: var(--button-hover);
-}
-
-/* Variables globales */
-body.light-mode {
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --card-bg: #f3f3f3;
-  --border-color: #cccccc;
-  --button-bg: #e0e0e0;
-  --button-text: #000000;
-  --button-hover: #c0c0c0;
-}
-
-body.dark-mode {
-  --bg-color: #1e1e1e;
-  --text-color: #f0f0f0;
-  --card-bg: #252525;
-  --border-color: #3a3a3a;
-  --button-bg: #2e2e2e;
-  --button-text: #ffffff;
-  --button-hover: #444444;
-}
-
-/* Aplicar variables globales */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.3s ease-in-out;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  margin: 0;
-  height: 100%;
 }
 
 /* Responsive */
@@ -193,8 +145,6 @@ body {
   }
 
   .comida-col.precio {
-    color: #29a03d;
-    font-weight: bold;
     text-align: center;
   }
 
