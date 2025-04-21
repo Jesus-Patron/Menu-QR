@@ -1,16 +1,18 @@
 html, body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
+  padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-image: url('assets/Imagenes/fondo-escritorio.jpg');
+  background-image: url('assets/fondos/fondo-escritorio.jpg');
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-attachment: fixed;
   color: #222222;
 }
 
 @media (max-width: 768px) {
   body {
-    background-image: url('assets/Imagenes/fondo-cel.jpg');
+    background-image: url('assets/fondos/fondo-cel.jpg');
   }
 }
