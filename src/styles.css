@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-image: url('assets/fondos/fondo-escritorio.jpg');
+  background-image: url('assets/Imagenes/fondo-escritorio.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -13,6 +13,6 @@ html, body {
 
 @media (max-width: 768px) {
   body {
-    background-image: url('assets/fondos/fondo-cel.jpg');
+    background-image: url('assets/Imagenes/fondo-cel.jpg');
   }
 }
