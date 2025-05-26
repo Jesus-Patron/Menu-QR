@@ -1,0 +1,62 @@
+<div class="menu-container">
+  <div class="menu">
+    <div class="logo">
+      <img src="assets/Imagenes/logo.png" alt="Logo">
+      <h1>Área de Cocina</h1>
+    </div>
+
+    <!-- Filtros -->
+    <div class="cliente-inputs">
+      <input type="text" [(ngModel)]="filtros.idPedido" placeholder="ID Pedido">
+      <input type="text" [(ngModel)]="filtros.idCliente" placeholder="ID Cliente">
+      <input type="text" [(ngModel)]="filtros.nombreCliente" placeholder="Nombre Cliente">
+      <input type="text" [(ngModel)]="filtros.idMesa" placeholder="ID Mesa">
+      <input type="text" [(ngModel)]="filtros.idProducto" placeholder="ID Producto">
+      <input type="date" [(ngModel)]="filtros.fecha">
+      <select [(ngModel)]="filtros.estado">
+        <option value="">Todos</option>
+        <option>Pendiente</option>
+        <option>Servido</option>
+        <option>Pagado</option>
+        <option>Cancelado</option>
+      </select>
+      <button class="buscar" (click)="filtrarPedidos()">Buscar</button>
+    </div>
+
+    <!-- Lista de Pedidos -->
+    <div *ngFor="let pedido of pedidosFiltrados" class="alimentos">
+      <div class="comida-row">
+        <div class="comida-col nombre">
+          <div class="nombre-descripcion">
+            <strong>Pedido #{{ pedido.pedido.idPedido }}</strong>
+            <div class="descripcion">
+              Cliente: {{ pedido.pedido.nombreCliente || 'No especificado' }}<br>
+              Mesa: {{ pedido.pedido.idMesa }}<br>
+              Fecha: {{ pedido.pedido.fecha | date: 'short' }}<br>
+              Estado: {{ pedido.pedido.estado }}
+            </div>
+          </div>
+        </div>
+        <div class="comida-col total">
+          Total: ${{ pedido.pedido.total?.toFixed(2) }}
+        </div>
+      </div>
+
+      <div class="comida-row" *ngFor="let detalle of pedido.detalles">
+        <div class="comida-col nombre">
+          {{ detalle.nombreProducto }} (x{{ detalle.cantidad }})
+        </div>
+        <div class="comida-col total">
+          ${{ detalle.subtotal?.toFixed(2) }}
+        </div>
+      </div>
+
+      <!-- Botones de estado -->
+      <div class="ordenar-container" *ngIf="pedido.pedido.estado !== 'Pagado' && pedido.pedido.estado !== 'Cancelado'">
+        <button class="ordenar-btn" (click)="cambiarEstado(pedido.pedido.idPedido, 'Servido')">Marcar como Servido</button>
+        <button class="ordenar-btn" (click)="confirmarPago(pedido)">Marcar como Pagado</button>
+        <button class="ordenar-btn" style="background-color: #f44336" (click)="confirmarCancelacion(pedido)">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

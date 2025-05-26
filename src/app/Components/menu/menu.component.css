@@ -1,43 +1,41 @@
-/* Contenedor general */
+/* === Contenedor General === */
 .menu-container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Estilos del menú */
+/* === Menú Principal === */
 .menu {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.85);
-  color: #222222;
+  color: #222;
   padding: 20px;
   border-radius: 12px;
 }
 
-/* Logo */
+/* === Logo === */
 .logo {
   text-align: center;
   margin-bottom: 20px;
 }
-
 .logo img {
   width: 120px;
   height: auto;
 }
-
 .logo h1 {
   font-size: 28px;
   margin-top: 8px;
   font-weight: bold;
-  color: #222222;
+  color: #222;
 }
 
-/* Botón de categoría */
+/* === Botón de Categoría === */
 .categoria-btn {
   width: 100%;
   background-color: #e0e0e0;
-  color: #000000;
-  border: 1px solid #cccccc;
+  color: #000;
+  border: 1px solid #ccc;
   padding: 12px;
   text-align: left;
   font-size: 18px;
@@ -47,20 +45,17 @@
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
-
 .categoria-btn:hover {
   background-color: #c0c0c0;
 }
 
-/* Contenedor de alimentos */
+/* === Contenedor de Alimentos === */
 .alimentos {
   padding: 10px 16px 10px 20px;
   background-color: #f3f3f3;
   border-radius: 8px;
   animation: expand 0.3s ease;
 }
-
-/* Animación al mostrar */
 @keyframes expand {
   from {
     opacity: 0;
@@ -72,35 +67,25 @@
   }
 }
 
-/* Tabla de alimentos */
-.comida-item {
-  border: none;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-}
-
+/* === Elementos de Comida === */
 .comida-row {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   padding: 12px 0;
+  flex-wrap: wrap;
 }
-
 .comida-col {
   padding: 0 12px;
 }
-
 .comida-col.imagen img {
   width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
 }
-
 .comida-col.nombre {
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,63 +93,355 @@
   font-weight: bold;
   flex: 1;
   padding: 0 10px;
-  color: #222222;
+  color: #222;
+  text-align: center;
 }
-
-.comida-col.precio {
-  min-width: 120px;
-  text-align: right;
-  font-size: 16px;
+.nombre-descripcion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.nombre-descripcion strong {
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
+.descripcion {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+  max-width: 300px;
+  line-height: 1.4;
+  text-align: justify;
+}
+.comida-col.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+  justify-content: center;
+}
+.comida-col.cantidad button {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.comida-col.cantidad input {
+  width: 40px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
   font-weight: bold;
-  color: #29a03d;
+}
+.comida-col.total {
+  min-width: 100px;
+  text-align: right;
+  font-weight: bold;
+  color: #007b00;
 }
 
-/* Responsive */
+/* === Botón de Ordenar === */
+.ordenar-container {
+  text-align: center;
+  margin-top: 24px;
+}
+.ordenar-btn {
+  background-color: #29a03d;
+  color: white;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.ordenar-btn:hover {
+  background-color: #218c35;
+}
+
+/* === Cliente === */
+.cliente-container,
+.cliente-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cliente-container input,
+.cliente-inputs input[type="text"] {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+}
+.cliente-container button,
+.cliente-inputs button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.cliente-inputs .buscar {
+  background-color: #007bff;
+  color: white;
+}
+.cliente-inputs .registrar {
+  background-color: #9fa728;
+  color: white;
+}
+.cliente-info,
+.cliente-no-encontrado,
+.form-cliente {
+  margin-bottom: 16px;
+  background-color: #f8f8f8;
+  padding: 12px;
+  border-radius: 8px;
+}
+.form-cliente input {
+  display: block;
+  margin: 8px 0;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.cliente-info {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* === Selección de Mesa === */
+.mesa-box {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.mesa-box label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+.mesa-box select {
+  width: 100%;
+  max-width: 250px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border 0.3s ease;
+}
+.mesa-box select:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* === Modal === */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+}
+.modal-content input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #218c35;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* === Modal Resumen === */
+.modal-content.resumen {
+  padding: 2rem;
+  max-width: 500px;
+}
+.resumen-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.resumen-table th,
+.resumen-table td {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.modal-buttons button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.modal-buttons button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+.modal-buttons button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cantidad-control button {
+  padding: 4px 10px;
+  font-size: 16px;
+}
+
+.cantidad-control span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Estilos para los botones de cantidad */
+.aumentar-btn,
+.disminuir-btn {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+.aumentar-btn {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.aumentar-btn:hover {
+  background-color: #0069d9;
+}
+
+.disminuir-btn {
+  background-color: #ffc107 !important;
+  color: black !important;
+}
+
+.disminuir-btn:hover {
+  background-color: #e0a800;
+}
+
+/* Estilos para botón de eliminar */
+.eliminar-btn {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.eliminar-btn:hover {
+  background-color: #c82333;
+}
+
+
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .menu-container {
     padding: 10px;
   }
-
   .comida-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 16px 0;
   }
-
   .comida-col {
     padding: 8px 0;
     width: 100%;
   }
-
   .comida-col.nombre,
-  .comida-col.precio {
+  .comida-col.total,
+  .comida-col.cantidad {
     justify-content: center;
     font-size: 17px;
     padding: 6px 0;
   }
-
-  .comida-col.precio {
-    text-align: center;
-  }
-
   .comida-col.imagen img {
     width: 100%;
     max-width: 250px;
     height: auto;
     margin-bottom: 10px;
   }
-
   .categoria-btn {
     font-size: 16px;
     padding: 10px;
   }
-
   .logo img {
     width: 100px;
   }
-
   .logo h1 {
     font-size: 24px;
+  }
+  .nombre-descripcion {
+    align-items: center;
+    text-align: center;
+  }
+  .descripcion {
+    max-width: 100%;
   }
 }

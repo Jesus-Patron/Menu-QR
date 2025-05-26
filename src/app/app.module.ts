@@ -15,13 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { MenuComponent } from './Components/menu/menu.component';
+import { CocinaComponent } from './Components/cocina/cocina.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    CocinaComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,7 @@ import { MenuComponent } from './Components/menu/menu.component';
     MatTableModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

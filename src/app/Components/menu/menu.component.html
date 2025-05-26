@@ -1,8 +1,45 @@
 <div class="menu-container">
   <div class="menu">
     <div class="logo">
-      <img src="assets/Imagenes/logo.png" alt="Logo"/>
+      <img src="assets/Imagenes/logo.png" alt="Logo" />
       <h1>Los Jardines</h1>
+    </div>
+
+    <div class="mesa-box">
+      <label for="mesa">Mesa:</label>
+        <select [(ngModel)]="idMesaSeleccionada" name="mesa" id="mesa">
+        <option [ngValue]="undefined" disabled selected>Selecciona una mesa</option>
+        <option *ngFor="let mesa of mesasDisponibles" [ngValue]="mesa.idMesas">
+          Mesa {{ mesa.idMesas }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Cliente -->
+    <div class="cliente-box">
+      <div class="cliente-inputs">
+        <input type="text" [(ngModel)]="nombreCliente" placeholder="Nombre del cliente" />
+        <button class="buscar" (click)="buscarCliente()">Buscar</button>
+        <button class="registrar" (click)="abrirModalCliente()">Registrar Cliente</button>
+      </div>
+
+      <div class="cliente-info" *ngIf="clienteEncontrado">
+        <p><strong>Cliente encontrado:</strong> {{ clienteEncontrado.nombre }}</p>
+      </div>
+    </div>
+
+    <!-- Modal para registrar cliente -->
+    <div class="modal" *ngIf="mostrarModalCliente">
+      <div class="modal-content">
+        <span class="close" (click)="cerrarModalCliente()">&times;</span>
+        <h2>Registrar Cliente</h2>
+
+        <input [(ngModel)]="nuevoCliente.nombre" placeholder="Nombre del cliente" />
+        <input [(ngModel)]="nuevoCliente.telefono" placeholder="Teléfono del cliente" />
+        <input [(ngModel)]="nuevoCliente.correo" placeholder="Correo del cliente" />
+
+        <button (click)="registrarCliente()">Guardar</button>
+      </div>
     </div>
 
     <div *ngFor="let categoria of comidas" class="submenu">
@@ -16,15 +53,73 @@
             <div class="comida-col imagen">
               <img [src]="comida.imagen || 'assets/img-placeholder.jpg'" alt="Imagen de {{ comida.nombre }}" />
             </div>
+
             <div class="comida-col nombre">
-              {{ comida.nombre }}
+              <div class="nombre-descripcion">
+                <strong>{{ comida.nombre }}</strong>
+                <div class="descripcion" *ngIf="comida.descripcion">
+                  {{ comida.descripcion }}
+                </div>
+              </div>
             </div>
-            <div class="comida-col precio">
-              {{ comida.precioMin && comida.precioMax
-                ? ('$' + comida.precioMin + ' - $' + comida.precioMax + ' MXN')
-                : (comida.precio | currency:'MXN') }}
+
+            <div class="comida-col cantidad">
+              <button (click)="decrementarCantidad(comida)">-</button>
+              <input type="text" [value]="comida.cantidad ?? 0" readonly />
+              <button (click)="incrementarCantidad(comida)">+</button>
+            </div>
+
+            <div class="comida-col total">
+              {{ ((comida.precio ?? 0) * (comida.cantidad ?? 0)) | currency:'MXN' }}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ordenar-container">
+      <button class="ordenar-btn" (click)="ordenar()">Ordenar</button>
+    </div>
+
+    <!-- Modal Resumen del Pedido -->
+    <div class="modal" *ngIf="mostrarResumen">
+      <div class="modal-content resumen">
+        <h2>Resumen del Pedido</h2>
+        <table class="resumen-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of resumenPedido">
+              <td>{{ item.nombre }}</td>
+              <td>
+                <div class="cantidad-control">
+                  <button class="aumentar-btn" (click)="aumentarCantidad(item)">+</button>
+                  <span>{{ item.cantidad }}</span>
+                  <button class="disminuir-btn" (click)="disminuirCantidad(item)">-</button>
+                </div>
+              </td>
+              <td>{{ item.cantidad * item.subtotal | currency:'MXN' }}</td>
+              <td>
+                <button class="eliminar-btn" (click)="eliminarProducto(item)">🗑️</button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>Total</strong></td>
+              <td><strong>{{ totalResumen | currency:'MXN' }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="modal-buttons">
+          <button (click)="confirmarPedido()">Confirmar</button>
+          <button (click)="cancelarResumen()">Cancelar</button>
         </div>
       </div>
     </div>

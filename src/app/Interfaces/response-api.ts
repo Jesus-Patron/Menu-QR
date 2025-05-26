@@ -1,5 +1,5 @@
-export interface ResponseApi {
-    status: boolean,
-    msg: string,
-    value: any
+export interface ResponseApi<T> {
+  status: boolean;
+  msg: string;
+  value: T;
 }
