@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    endpoint: "http://www.pruebarestaurante.somee.com/api/"
+    endpoint: "https://www.pruebarestaurante.somee.com/api/"
 };
