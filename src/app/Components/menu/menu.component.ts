@@ -72,14 +72,26 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  agruparPorCategoria(productos: Productos[]): { categoria: string; alimentos: (Productos & { cantidad?: number })[] }[] {
-    const agrupado: { [key: string]: (Productos & { cantidad?: number })[] } = {};
+  agruparPorCategoria(productos: Productos[]): { categoria: string; alimentos: (Productos & { cantidad?: number, seleccionado?: boolean })[] }[] {
+    const agrupado: { [key: string]: (Productos & { cantidad?: number, seleccionado?: boolean })[] } = {};
     for (const producto of productos) {
       const categoria = producto.categoria || 'Sin Categoría';
       if (!agrupado[categoria]) agrupado[categoria] = [];
-      agrupado[categoria].push({ ...producto, cantidad: 0 });
+      agrupado[categoria].push({ ...producto, cantidad: 0, seleccionado: false });
     }
     return Object.entries(agrupado).map(([categoria, alimentos]) => ({ categoria, alimentos }));
+  }
+
+  actualizarSeleccion(comida: any): void {
+    if (comida.seleccionado && (!comida.cantidad || comida.cantidad === 0)) {
+      comida.cantidad = 1; // Establece cantidad mínima al seleccionar
+    }
+
+    if (!comida.seleccionado) {
+      comida.cantidad = 0; // Reinicia si se deselecciona
+    }
+
+    this.actualizarResumenPedido(); // Recalcula el resumen
   }
 
   toggleCategoria(categoriaNombre: string): void {
@@ -290,10 +302,14 @@ export class MenuComponent implements OnInit {
       let comida = categoria.alimentos.find(c => c.nombre === item.nombre);
       if (comida) {
         comida.cantidad = 0;
+        comida.seleccionado = false;
         break;
       }
     }
     this.actualizarResumen();
+    if (this.resumenPedido.length === 0) {
+      this.mostrarResumen = false;
+    }
   }
 
   actualizarResumen(): void {
@@ -324,6 +340,10 @@ export class MenuComponent implements OnInit {
 
     this.resumenPedido = resumen;
     this.actualizarResumen();
+
+    if (this.resumenPedido.length === 0) {
+      this.mostrarResumen = false;
+    }
   }
 
 }

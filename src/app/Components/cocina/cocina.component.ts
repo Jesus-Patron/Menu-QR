@@ -3,6 +3,8 @@ import { PedidoCompleto } from '../../Interfaces/pedido-completo';
 import { PedidosService } from '../../Services/pedidos.service';
 import { MesasService } from '../../Services/mesas.service';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   standalone: false,
@@ -162,5 +164,47 @@ export class CocinaComponent implements OnInit {
         });
       }
     });
+  }
+
+  generarReporteExcel(): void {
+    const pedidosPagados = this.pedidosFiltrados.filter(p => p.pedido.estado === 'Pagado');
+
+    const data = pedidosPagados.map(p => {
+      const totalSinIva = p.detalles.reduce((sum, d) => sum + d.subtotal!, 0);
+      const iva = totalSinIva * 0.16;
+      const totalConIva = totalSinIva + iva;
+
+      return {
+        'ID Pedido': p.pedido.idPedido,
+        'Fecha': new Date(p.pedido.fecha!).toLocaleString(),
+        'Cliente': p.pedido.nombreCliente || 'No especificado',
+        'Mesa': p.pedido.idMesa || '',
+        'Estado': p.pedido.estado,
+        'Total Sin IVA': totalSinIva.toFixed(2),
+        'IVA (16%)': iva.toFixed(2),
+        'Total Con IVA': totalConIva.toFixed(2)
+      };
+    });
+
+    // Agregar fila de totales
+    const totalSinIva = data.reduce((sum, d) => sum + parseFloat(d['Total Sin IVA']), 0);
+    const totalIva = data.reduce((sum, d) => sum + parseFloat(d['IVA (16%)']), 0);
+    const totalConIva = data.reduce((sum, d) => sum + parseFloat(d['Total Con IVA']), 0);
+    data.push({
+      'ID Pedido': 0,
+      'Fecha': '',
+      'Cliente': '',
+      'Mesa': '',
+      'Estado': '',
+      'Total Sin IVA': totalSinIva.toFixed(2),
+      'IVA (16%)': totalIva.toFixed(2),
+      'Total Con IVA': totalConIva.toFixed(2)
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = { Sheets: { 'Totales': worksheet }, SheetNames: ['Totales'] };
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    FileSaver.saveAs(blob, 'Reporte_Totales_Pedidos.xlsx');
   }
 }

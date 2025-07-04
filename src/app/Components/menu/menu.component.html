@@ -50,6 +50,11 @@
       <div *ngIf="categoria.categoria === categoriaSeleccionada" class="alimentos">
         <div *ngFor="let comida of categoria.alimentos" class="comida-item">
           <div class="comida-row">
+
+            <div class="comida-col checkbox">
+              <input type="checkbox" [(ngModel)]="comida.seleccionado" (change)="actualizarSeleccion(comida)" />
+            </div>
+
             <div class="comida-col imagen">
               <img [src]="comida.imagen || 'assets/img-placeholder.jpg'" alt="Imagen de {{ comida.nombre }}" />
             </div>
@@ -70,7 +75,15 @@
             </div>
 
             <div class="comida-col total">
-              {{ ((comida.precio ?? 0) * (comida.cantidad ?? 0)) | currency:'MXN' }}
+              <div class="precio-subtotal">
+                <div class="precio">
+                  Precio: {{ comida.precio | currency:'MXN' }}
+                </div>
+                <div class="subtotal" *ngIf="comida.cantidad && comida.cantidad > 0">
+                  <div>---------------------------</div>
+                  Subtotal: {{ (comida.precio ?? 0) * comida.cantidad | currency:'MXN' }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

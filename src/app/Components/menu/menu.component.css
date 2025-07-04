@@ -7,7 +7,9 @@
 
 /* === Menú Principal === */
 .menu {
-  width: 100%;
+  position: relative;
+  width: 130%;
+  left: -20%;
   background-color: rgba(255, 255, 255, 0.85);
   color: #222;
   padding: 20px;
@@ -265,12 +267,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 24px;
+  padding: 32px;
   border-radius: 8px;
   z-index: 1000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 400px;
+  width: 95%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .modal-content input {
   width: 100%;
@@ -303,20 +307,20 @@
   max-width: 500px;
 }
 .resumen-table {
-  width: 100%;
+  width: 110%;
+  margin: 0 auto 1rem auto;
   border-collapse: collapse;
-  margin-bottom: 1rem;
 }
 .resumen-table th,
 .resumen-table td {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   border-bottom: 1px solid #ccc;
 }
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  gap: 2rem;
 }
 .modal-buttons button {
   padding: 0.5rem 1.5rem;
@@ -396,7 +400,6 @@
 .eliminar-btn:hover {
   background-color: #c82333;
 }
-
 
 
 /* === Responsive === */

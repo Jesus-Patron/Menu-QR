@@ -7,4 +7,5 @@ export interface Productos {
     precio?: number,
     disponibilidad?: number,
     cantidad?: number;
+    seleccionado?: boolean;
 }
