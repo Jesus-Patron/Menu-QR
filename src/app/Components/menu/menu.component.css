@@ -9,8 +9,9 @@
 .menu {
   position: relative;
   width: 130%;
-  left: -20%;
-  background-color: rgba(255, 255, 255, 0.85);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255,255,255,0.85);
   color: #222;
   padding: 20px;
   border-radius: 12px;
@@ -80,6 +81,14 @@
 .comida-col {
   padding: 0 12px;
 }
+.comida-titulo {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin: 5px 0;   /* margen arriba y abajo */
+}
 .comida-col.imagen img {
   width: 80px;
   height: 80px;
@@ -146,6 +155,9 @@
   text-align: right;
   font-weight: bold;
   color: #007b00;
+}
+.precio {
+  margin-bottom: 5px;
 }
 
 /* === Botón de Ordenar === */
@@ -417,6 +429,14 @@
     padding: 8px 0;
     width: 100%;
   }
+  .comida-titulo {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin: 10px 0;
+  }
   .comida-col.nombre,
   .comida-col.total,
   .comida-col.cantidad {
@@ -429,6 +449,9 @@
     max-width: 250px;
     height: auto;
     margin-bottom: 10px;
+  }
+  .precio {
+    margin-bottom: 5px;
   }
   .categoria-btn {
     font-size: 16px;
