@@ -97,46 +97,50 @@
     </div>
 
     <!-- Modal Resumen del Pedido -->
-    <div class="modal" *ngIf="mostrarResumen">
-      <div class="modal-content resumen">
-        <h2>Resumen del Pedido</h2>
-        <table class="resumen-table">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of resumenPedido">
-              <td>{{ item.nombre }}</td>
-              <td>
-                <div class="cantidad-control">
-                  <button class="aumentar-btn" (click)="aumentarCantidad(item)">+</button>
-                  <span>{{ item.cantidad }}</span>
-                  <button class="disminuir-btn" (click)="disminuirCantidad(item)">-</button>
-                </div>
-              </td>
-              <td>{{ item.cantidad * item.subtotal | currency:'MXN' }}</td>
-              <td>
-                <button class="eliminar-btn" (click)="eliminarProducto(item)">🗑️</button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="2"><strong>Total</strong></td>
-              <td><strong>{{ totalResumen | currency:'MXN' }}</strong></td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="modal-buttons">
-          <button (click)="confirmarPedido()">Confirmar</button>
-          <button (click)="cancelarResumen()">Cancelar</button>
+    <div *ngIf="mostrarResumen">
+      <div class="modal-backdrop"></div>
+      <div class="modal">
+        <div class="modal-content resumen">
+          <h2>Resumen del Pedido</h2>
+          <table class="resumen-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of resumenPedido">
+                <td>{{ item.nombre }}</td>
+                <td>
+                  <div class="cantidad-control">
+                    <button class="aumentar-btn" (click)="aumentarCantidad(item)">+</button>
+                    <span>{{ item.cantidad }}</span>
+                    <button class="disminuir-btn" (click)="disminuirCantidad(item)">-</button>
+                  </div>
+                </td>
+                <td>{{ item.cantidad * item.subtotal | currency:'MXN' }}</td>
+                <td>
+                  <button class="eliminar-btn" (click)="eliminarProducto(item)">🗑️</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2"><strong>Total</strong></td>
+                <td><strong>{{ totalResumen | currency:'MXN' }}</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="modal-buttons">
+            <button (click)="confirmarPedido()">Confirmar</button>
+            <button (click)="cancelarResumen()">Cancelar</button>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>

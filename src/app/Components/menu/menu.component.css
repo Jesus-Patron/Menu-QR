@@ -319,7 +319,7 @@
   max-width: 500px;
 }
 .resumen-table {
-  width: 110%;
+  width: 100%;
   margin: 0 auto 1rem auto;
   border-collapse: collapse;
 }
